@@ -1,30 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-struct BinaryTree {
-    char *value;
-    struct BinaryTree *right;
-    struct BinaryTree *left;
-};
-
-struct BinaryTree *create_tree(char **s, int start, int end);
-struct BinaryTree *tree_alloc(void);
-void print_tree(struct BinaryTree *root);
-void free_tree(struct BinaryTree *root);
-char *str_dup(char **s, int mid);
-
-int main()
-{
-    char *s[] = { "A", "B", "C", "D", "E", "F", "G" };
-    int size = 7;
-    int end = (size - 1);  
-    int start = 0;
-    struct BinaryTree *letters = create_tree(s, start, end);
-    print_tree(letters);
-    free_tree(letters);
-    return 0;
-}
+#include "tree.h"
 
 struct BinaryTree *create_tree(char **s, int start, int end)
 {
