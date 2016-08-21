@@ -1,4 +1,7 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "tree.h"
+#include <string.h>
 
 struct BinaryTree *create_tree(char **s, int start, int end)
 {
