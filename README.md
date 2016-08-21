@@ -1,3 +1,4 @@
 # DS & ALGO
 
-implementations of data structures and algorithms in C.
+Creating a lib of Data structure of Algorithms to be used in C.
+
