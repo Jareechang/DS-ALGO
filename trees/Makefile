@@ -1,5 +1,5 @@
 CC=gcc
-SOURCES= a_to_tree.c main.c traversal.c
+SOURCES= a_to_tree.c main.c DFS_traversal.c
 DEPS= tree.h
 
 build: $(SOURCES) $(DEPS)

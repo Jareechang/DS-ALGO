@@ -17,5 +17,7 @@ void free_tree(struct BinaryTree *root);
 char *str_dup(char **s, int mid);
 
 /* Traversal methods */
-void traverse(struct BinaryTree *root);
+void inorder_traversal(struct BinaryTree *root);
+void preorder_traversal(struct BinaryTree *root);
+void postorder_traversal(struct BinaryTree *root);
 #endif

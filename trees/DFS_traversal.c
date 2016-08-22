@@ -3,6 +3,7 @@
 
 void inorder_traversal(struct BinaryTree *root)
 {
+    if(root == NULL) return; /* Base case */
 }
 
 void preorder_traversal(struct BinaryTree *root)
