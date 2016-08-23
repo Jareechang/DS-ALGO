@@ -20,4 +20,5 @@ char *str_dup(char **s, int mid);
 void inorder_traversal(struct BinaryTree *root);
 void preorder_traversal(struct BinaryTree *root);
 void postorder_traversal(struct BinaryTree *root);
+void bfs_traversal(struct BinaryTree *root);
 #endif
