@@ -31,6 +31,15 @@ int main(void)
     struct BinaryTree *ptr = (struct BinaryTree *) malloc(sizeof(struct BinaryTree)); /* ptr to store the link to trees */
     struct BinaryTree *pos = (struct BinaryTree *) malloc(sizeof(struct BinaryTree)); /* keep position of first reference*/
 
+    char *s[] = { "A", "B", "C", "D", "E", "F", "G" };
+    int size = 7;
+    int end = (size - 1);  
+    int start = 0;
+
+    struct BinaryTree *letters = create_tree(s, start, end);
+
+    print_tree(letters);
+
     pos = ptr;
 
     ptr = enqueue(ptr, tree);
