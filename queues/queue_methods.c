@@ -1,7 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "/home/vagrant/ds-algos/trees/tree.h"
 #include "queue.h"
+
+#define EMPTY (-1) /* initial queue position */
+/* 
+ * definfitions: define maximum queue size 
+ * */
+#define MAX 7
 
 struct BinaryTree *enqueue(struct BinaryTree *pos, struct BinaryTree *tree)
 {
@@ -34,6 +41,24 @@ int queue_empty(void)
 struct BinaryTree *dequeue(struct BinaryTree *pos)
 {
     return (pos + head++);
+}
+
+struct BinaryTree *bfs_search(struct BinaryTree *tree, struct BinaryTree *pos, char *item)
+{
+    if(head <= (MAX - 1) && tail <= (MAX - 1)) {
+        // Visit node
+        if(strcmp(item, (tree->value)) == 0) {
+            return tree;
+        }
+        if(tree->left != NULL || tree->right != NULL) {
+            enqueue(pos, tree->left);
+            enqueue(pos, tree->right);
+        } 
+        bfs_search(dequeue(pos), pos, item);
+    } else {
+        struct BinaryTree *blank = (struct BinaryTree *) malloc(sizeof(struct BinaryTree));
+        return blank;
+    }
 }
 
 void traversal(struct BinaryTree *tree, struct BinaryTree *pos)

@@ -13,4 +13,5 @@ int queue_full(void);
 int queue_empty(void);
 
 void traversal(struct BinaryTree *tree, struct BinaryTree *pos);
+struct BinaryTree *bfs_search(struct BinaryTree *tree, struct BinaryTree *pos, char *item);
 #endif
