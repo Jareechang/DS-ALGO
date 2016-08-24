@@ -2,51 +2,90 @@
 #include <stdlib.h>
 #include "/home/vagrant/ds-algos/trees/tree.h"
 
+#define EMPTY (-1)
+#define MAX 7
+
+int head, tail;
+
 struct Queue {
     int index; /* position tracker */
     char *item;
 };
 
-struct BinaryTree * enqueue(struct BinaryTree *ptr, struct BinaryTree *tree)
-{
-    *ptr++ = *tree;
-    return ptr;
-}
+struct BinaryTree *enqueue(struct BinaryTree *pos, struct BinaryTree *tree);
+struct BinaryTree *dequeue(struct BinaryTree *pos);
 
-char *dequeue(struct BinaryTree *tree)
-{
-    static int i = 0;
-    return (tree + i++)->value;
-}
+int queue_full(void);
+int queue_empty(void);
+
+void traversal(struct BinaryTree *tree, struct BinaryTree *pos);
 
 int main(void)
 {
 
-    struct BinaryTree *tree = (struct BinaryTree *) malloc(sizeof(struct BinaryTree)); 
-    struct BinaryTree *tree_second = (struct BinaryTree *) malloc(sizeof(struct BinaryTree)); 
+    head = tail = EMPTY;
 
-    tree->value = "abc";
-    tree_second->value = "def";
-
-    struct BinaryTree *ptr = (struct BinaryTree *) malloc(sizeof(struct BinaryTree)); /* ptr to store the link to trees */
-    struct BinaryTree *pos = (struct BinaryTree *) malloc(sizeof(struct BinaryTree)); /* keep position of first reference*/
+    struct BinaryTree *pos = (struct BinaryTree *) malloc(sizeof(struct BinaryTree) * MAX); /* keep position of first reference*/
 
     char *s[] = { "A", "B", "C", "D", "E", "F", "G" };
-    int size = 7;
+    int size = MAX;
     int end = (size - 1);  
     int start = 0;
 
     struct BinaryTree *letters = create_tree(s, start, end);
 
-    print_tree(letters);
+    traversal(letters, pos);
 
-    pos = ptr;
-
-    ptr = enqueue(ptr, tree);
-    ptr = enqueue(ptr, tree_second);
-
-    printf("tree value: %s\n", dequeue(pos));
-    printf("tree value: %s\n", dequeue(pos));
+    free_tree(letters);
+    free(pos);
 
     return 0;
+}
+
+struct BinaryTree *enqueue(struct BinaryTree *pos, struct BinaryTree *tree)
+{
+    if(head == EMPTY && tail == EMPTY) {
+        ++head;
+        ++tail;
+    } else if(queue_full()) {
+        /* reset pointer position if queue reaches max */
+        tail = head = EMPTY;
+    } else {
+        ++tail;
+    } 
+
+    *(pos + tail) = *tree;
+    return pos;
+}
+
+int queue_full(void)
+{
+    return (tail == (MAX - 1));
+}
+
+int queue_empty(void)
+{
+    if(head > 0 && tail > 0) {
+        return head == tail;
+    } 
+}
+
+struct BinaryTree *dequeue(struct BinaryTree *pos)
+{
+    int i = 0;
+    return (pos + head++);
+}
+
+void traversal(struct BinaryTree *tree, struct BinaryTree *pos)
+{
+    if(head <= (MAX - 1) && tail <= (MAX - 1)) {
+        // Visit node
+        printf("%s\n", tree->value);
+        if(tree->left != NULL || tree->right != NULL) {
+            enqueue(pos, tree->left);
+            enqueue(pos, tree->right);
+        } 
+        traversal(dequeue(pos), pos);
+    } 
+    return;
 }
