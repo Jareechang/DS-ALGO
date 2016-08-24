@@ -25,4 +25,5 @@ void bfs_traversal(struct BinaryTree *root);
 /* properties */
 char *min(struct BinaryTree *tree);
 char *max(struct BinaryTree *tree);
+struct BinaryTree *search_for(char *item, struct BinaryTree *tree);
 #endif
