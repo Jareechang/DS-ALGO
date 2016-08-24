@@ -72,7 +72,6 @@ int queue_empty(void)
 
 struct BinaryTree *dequeue(struct BinaryTree *pos)
 {
-    int i = 0;
     return (pos + head++);
 }
 
