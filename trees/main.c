@@ -20,7 +20,7 @@ int main()
     print_tree(letters);
 
     /*print_leaves("D", letters);*/
-    printf("max depth: %d\n", max_depth(letters));
+    printf("height of tree: %d\n", height(letters));
     free_tree(letters);
     return 0;
 }

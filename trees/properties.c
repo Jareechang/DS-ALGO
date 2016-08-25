@@ -56,7 +56,20 @@ void print_leaves(char *target, struct BinaryTree *node)
     visit_leaves(target, temp);
 }
 
-int max_depth(struct BinaryTree *tree)
+/* max_depth: number of edges from current node to the tree's root node */
+int max_depth(struct BinaryTree *node)
+{
+    if(tree == NULL) return 0;
+    int left_depth = 1 + depth(tree->left);
+    int right_depth = 1 + depth(tree->right);
+    return F_MAX(left_depth, right_depth);
+}
+
+/* Height: number of edges on longest path from the node to leaf (leaf having height = 0)
+ * 
+ * NOTE: this function makes use of max_depth function call to make a clear distinction between 
+ * 'depth' and 'height'*/
+int height(struct BinaryTree *tree)
 {
     if(tree == NULL) return 0;
     int left_depth = 1 + max_depth(tree->left);
