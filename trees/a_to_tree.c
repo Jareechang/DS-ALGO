@@ -5,16 +5,16 @@
 
 struct BinaryTree *create_tree(char **s, int start, int end)
 {
-    int mid = (end + start)/2;
+    int mid = ((end + start)/2);
     int i = 0;
     struct BinaryTree *Tree = tree_alloc(); /* allocate memory for tree */
 
     Tree->value = str_dup(s, mid);
 
-    if(mid == start || mid == end) {
-        Tree->left = Tree->right = NULL;
-        return Tree;
+    if(start > end) {
+        return NULL;
     }
+
     Tree->left =  create_tree(s, start, (mid - 1));
     Tree->right =  create_tree(s, (mid + 1), end);
     return Tree;

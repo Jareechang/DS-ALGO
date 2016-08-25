@@ -10,6 +10,8 @@
  * */
 #define MAX 7
 
+#define F_MAX(x,y) (((x) > (y)) ? (x) : (y))
+
 /* min: returns smallest item in the tree (furthest left leaf) */
 char *min(struct BinaryTree *tree)
 {
@@ -53,3 +55,12 @@ void print_leaves(char *target, struct BinaryTree *node)
     struct BinaryTree *temp = search_for(target, node);
     visit_leaves(target, temp);
 }
+
+int max_depth(struct BinaryTree *tree)
+{
+    if(tree == NULL) return 0;
+    int left_depth = 1 + max_depth(tree->left);
+    int right_depth = 1 + max_depth(tree->right);
+    return F_MAX(left_depth, right_depth);
+}
+

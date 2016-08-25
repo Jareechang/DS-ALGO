@@ -28,4 +28,5 @@ char *max(struct BinaryTree *tree);
 struct BinaryTree *search_for(char *item, struct BinaryTree *tree);
 void print_children(char *target, struct BinaryTree *node);
 void visit_leaves(char *node_value, struct BinaryTree *node);
+int max_depth(struct BinaryTree *tree);
 #endif

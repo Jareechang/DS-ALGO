@@ -4,4 +4,3 @@ DEPS= tree.h ../queues/queue.h
 
 build: $(SOURCES) $(DEPS)
 	$(CC) -g -o tree $(SOURCES) $(DEPS)
-

@@ -7,18 +7,20 @@
 /* 
  * definfitions: define maximum queue size 
  * */
-#define MAX 7
+#define MAX 10 
 
 int main()
 {
     head = tail = EMPTY;
-    char *s[] = { "A", "B", "C", "D", "E", "F", "G" };
-    int size = 7;
+    char *s[] = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K" };
+    int size = 11;
     int end = (size - 1);  
     int start = 0;
     struct BinaryTree *letters = create_tree(s, start, end);
+    print_tree(letters);
 
-    print_leaves("D", letters);
+    /*print_leaves("D", letters);*/
+    printf("max depth: %d\n", max_depth(letters));
     free_tree(letters);
     return 0;
 }
