@@ -18,7 +18,7 @@ int main()
     int start = 0;
     struct BinaryTree *letters = create_tree(s, start, end);
 
-    print_leaves("B", search_for("B", letters));
+    print_leaves("D", letters);
     free_tree(letters);
     return 0;
 }

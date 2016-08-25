@@ -36,12 +36,20 @@ struct BinaryTree *search_for(char *item, struct BinaryTree *tree)
     return bfs_search(tree, pos, item);
 }
 
-/* print_leaves: given a node, print it's leaves (or children) */
-void print_leaves(char *target, struct BinaryTree *node)
+/* visit_leaves: given a start node, it recursively visits the leaves 
+ * (excluding the given node) */
+void visit_leaves(char *node_value, struct BinaryTree *node)
 {
     if(node == NULL) return;
-    print_leaves(target, node->left);
-    print_leaves(target, node->right);
-    if(strcmp(target, node->value) == 0) return; /* ignore the target node */
+    visit_leaves(node_value, node->left);
+    visit_leaves(node_value, node->right);
     printf("%s\n", node->value);
+    if(strcmp(node_value, node->value) == 0) return; /* ignore the target node */
+}
+
+/* print_leaves: given a node (sub-tree), print it's leaves (or children) */
+void print_leaves(char *target, struct BinaryTree *node)
+{
+    struct BinaryTree *temp = search_for(target, node);
+    visit_leaves(target, temp);
 }
