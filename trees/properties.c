@@ -33,5 +33,15 @@ char *max(struct BinaryTree *tree)
 struct BinaryTree *search_for(char *item, struct BinaryTree *tree)
 {
     struct BinaryTree *pos = (struct BinaryTree *) malloc(sizeof(struct BinaryTree) * MAX); /* keep position of first reference*/
-    return bfs_search(tree, pos, "A");
+    return bfs_search(tree, pos, item);
+}
+
+/* print_leaves: given a node, print it's leaves (or children) */
+void print_leaves(char *target, struct BinaryTree *node)
+{
+    if(node == NULL) return;
+    print_leaves(target, node->left);
+    print_leaves(target, node->right);
+    if(strcmp(target, node->value) == 0) return; /* ignore the target node */
+    printf("%s\n", node->value);
 }

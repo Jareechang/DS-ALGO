@@ -17,13 +17,8 @@ int main()
     int end = (size - 1);  
     int start = 0;
     struct BinaryTree *letters = create_tree(s, start, end);
-    struct BinaryTree *target = (struct BinaryTree *) malloc(sizeof(struct BinaryTree));
-    /*bfs_traversal(letters);*/
-    /*print_tree(letters);*/
-    /*printf("min: %s\n", min(letters));*/
-    /*printf("min: %s\n", max(letters));*/
-    target = search_for("A", letters);
-    printf("target: %s\n", target->value);
+
+    print_leaves("B", search_for("B", letters));
     free_tree(letters);
     return 0;
 }
