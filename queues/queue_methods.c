@@ -4,12 +4,6 @@
 #include "/home/vagrant/ds-algos/trees/tree.h"
 #include "queue.h"
 
-#define EMPTY (-1) /* initial queue position */
-/* 
- * definfitions: define maximum queue size 
- * */
-#define MAX 7
-
 struct BinaryTree *enqueue(struct BinaryTree *pos, struct BinaryTree *tree)
 {
     if(head == EMPTY && tail == EMPTY) {
@@ -57,6 +51,7 @@ struct BinaryTree *bfs_search(struct BinaryTree *tree, struct BinaryTree *pos, c
         bfs_search(dequeue(pos), pos, item);
     } else {
         struct BinaryTree *blank = (struct BinaryTree *) malloc(sizeof(struct BinaryTree));
+        blank->value = NULL;
         return blank;
     }
 }

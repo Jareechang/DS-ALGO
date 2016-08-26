@@ -3,12 +3,6 @@
 #include "/home/vagrant/ds-algos/trees/tree.h"
 #include "queue.h"
 
-#define EMPTY (-1) /* initial queue position */
-/* 
- * definfitions: define maximum queue size 
- * */
-#define MAX 7
-
 int main(void)
 {
     head = tail = EMPTY;

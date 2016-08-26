@@ -1,5 +1,7 @@
 #ifndef TREE_H
 #define TREE_H
+extern int MAX;
+extern int EMPTY;
 /* Tree Structure  */
 struct BinaryTree {
     char *value;

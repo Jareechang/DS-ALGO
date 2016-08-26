@@ -4,12 +4,6 @@
 #include "tree.h"
 #include "/home/vagrant/ds-algos/queues/queue.h"
 
-#define EMPTY (-1) /* initial queue position */
-/* 
- * definfitions: define maximum queue size 
- * */
-#define MAX 7
-
 #define F_MAX(x,y) (((x) > (y)) ? (x) : (y))
 
 /* min: returns smallest item in the tree (furthest left leaf) */
@@ -59,9 +53,9 @@ void print_leaves(char *target, struct BinaryTree *node)
 /* max_depth: number of edges from current node to the tree's root node */
 int max_depth(struct BinaryTree *node)
 {
-    if(tree == NULL) return 0;
-    int left_depth = 1 + depth(tree->left);
-    int right_depth = 1 + depth(tree->right);
+    if(node == NULL) return 0;
+    int left_depth = 1 + max_depth(node->left);
+    int right_depth = 1 + max_depth(node->right);
     return F_MAX(left_depth, right_depth);
 }
 
