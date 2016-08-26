@@ -70,4 +70,3 @@ int height(struct BinaryTree *tree)
     int right_depth = 1 + max_depth(tree->right);
     return F_MAX(left_depth, right_depth);
 }
-
