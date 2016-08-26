@@ -15,9 +15,10 @@ int main()
     int size = MAX;
     int end = (size - 1);  
     int start = 0;
-    struct BinaryTree *letters = create_tree(s, start, end);
 
-    printf("item found? : %s\n", IS_NULL((search_for("Z", letters))->value) ? "yes" : "no");
+    struct BinaryTree *letters = create_tree(s, start, end);
+    insert("Z", letters, letters);
+    print_tree(letters);
     free_tree(letters);
     return 0;
 }

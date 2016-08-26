@@ -24,6 +24,10 @@ void preorder_traversal(struct BinaryTree *root);
 void postorder_traversal(struct BinaryTree *root);
 void bfs_traversal(struct BinaryTree *root);
 
+/* Tree specific methods */
+int insert(char *value, struct BinaryTree *node, struct BinaryTree *parent);
+int greater_than(struct BinaryTree *node, char *value);
+
 /* properties */
 char *min(struct BinaryTree *tree);
 char *max(struct BinaryTree *tree);
