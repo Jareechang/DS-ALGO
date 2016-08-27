@@ -3,8 +3,6 @@
 #include <string.h>
 #include "tree.h"
 
-#define NOT_NULL(item) item != NULL
-
 /* 
  * insert: 
  *  insert a node into provided tree with the 
@@ -40,10 +38,13 @@ int delete_node(char *value, struct BinaryTree *node)
         /* check the cases */
         switch(check_case(node)) {
             case 0:
+                printf("case 0\n");
                 break;
             case 1:
+                printf("case 1\n");
                 break;
             case 2:
+                printf("case 2\n");
                 break;
             default:
                 // do something
@@ -56,24 +57,3 @@ int delete_node(char *value, struct BinaryTree *node)
                                 /*delete_node(value, node->left, node);*/
 }
 
-int check_case(struct BinaryTree *node)
-{
-    int n = 0;
-    if(NOT_NULL(node->left) || NOT_NULL(node->right)) {
-        if(NOT_NULL(node->left) && NOT_NULL(node->right)) {
-            return (n + 2);
-        }
-        return (++n);
-    } 
-    return n;
-}
-
-int equal(struct BinaryTree *node, char *value)
-{
-   return (strcmp(node->value, value) == 0);
-}
-
-int greater_than(struct BinaryTree *node, char *value)
-{
-    return (strcmp(node->value, value) < 0);
-}
