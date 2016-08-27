@@ -3,6 +3,8 @@
 #include <string.h>
 #include "tree.h"
 
+#define NOT_NULL(item) item != NULL
+
 struct BinaryTree *get_parent(char *value, struct BinaryTree *node, struct BinaryTree *parent)
 {
     if(node == NULL) return tree_alloc();
@@ -15,19 +17,42 @@ struct BinaryTree *get_parent(char *value, struct BinaryTree *node, struct Binar
 
 }
 
+
 struct BinaryTree *get_target_node(char *value, struct BinaryTree *node)
 {
     return equal(node->left, value) ? node->left : node->right;
 }
 
-void swap_link(struct BinaryTree *target, struct BinaryTree *parent)
+struct BinaryTree *get_single_leaf(struct BinaryTree *node)
 {
-    if(equal(parent->left, target->value)) {
-        // swap Z and G
-    } else if(equal(parent->right, target->value)) {
-
+    if(NOT_NULL(node->left)) {
+        return node->left;
+    } else if(NOT_NULL(node->right)) {
+        return node->right;
+    } else {
+        printf("Error: single leaf in '%s' is NULL... please \
+                check case statement in delete_node()", node->value);
     }
+}
 
+/* get_min_node: provided with the right sub-tree, recursively
+ * looks up the minimum node*/
+struct BinaryTree *get_min_node(struct BinaryTree *node, struct BinaryTree *parent)
+{
+    if(node == NULL) {
+        return parent;
+    }
+    get_min_node(node->left, node);
+}
+
+void swap_link(struct BinaryTree *deleted_node, struct BinaryTree *parent, struct BinaryTree *leaf)
+{
+    /* checking which side of the parent the deleted node is on */
+    if(greater_than(parent, deleted_node->value)) {
+        parent->right = leaf;
+    } else {
+        parent->left = leaf;
+    }
 }
 
 /* 
@@ -71,9 +96,11 @@ int insert_node(char *value, struct BinaryTree *node, struct BinaryTree *parent)
 
 int delete_node(char *value, struct BinaryTree *tree)
 {
-    /* search for target node */
     struct BinaryTree *target = tree_alloc();
     struct BinaryTree *parent = tree_alloc();
+    struct BinaryTree *leaf = tree_alloc();
+
+    /* search for target node */
     target = search_for(value, tree);
 
     /* get its parent */
@@ -87,7 +114,9 @@ int delete_node(char *value, struct BinaryTree *tree)
                 return 1;
                 break;
             case 1:
-                trim_leaf(value, parent);
+                leaf = get_single_leaf(target);
+                swap_link(target, parent, leaf);
+                return 1;
                 break;
             case 2:
                 printf("case 2\n");
@@ -98,8 +127,5 @@ int delete_node(char *value, struct BinaryTree *tree)
         }
         return 0;
     }
-    // for example delete C
-    /*greater_than(node, value) ? delete_node(value, node->right, node) : */
-                                /*delete_node(value, node->left, node);*/
 }
 

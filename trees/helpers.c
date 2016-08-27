@@ -20,6 +20,7 @@ int equal(struct BinaryTree *node, char *value)
    return (strcmp(node->value, value) == 0);
 }
 
+/* greater_than: value is greater than current node being passed in*/
 int greater_than(struct BinaryTree *node, char *value)
 {
     return (strcmp(node->value, value) < 0);

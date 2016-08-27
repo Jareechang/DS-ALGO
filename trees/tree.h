@@ -29,9 +29,11 @@ void bfs_traversal(struct BinaryTree *root);
 
 /* Tree specific methods */
 struct BinaryTree *get_parent(char *value, struct BinaryTree *node, struct BinaryTree *parent);
+struct BinaryTree *get_single_leaf(struct BinaryTree *node);
 int insert_node(char *value, struct BinaryTree *node, struct BinaryTree *parent);
 int delete_node(char *value, struct BinaryTree *node);
-void swap_link(struct BinaryTree *target, struct BinaryTree *parent);
+struct BinaryTree *get_min_node(struct BinaryTree *node, struct BinaryTree *parent);
+void swap_link(struct BinaryTree *deleted_node, struct BinaryTree *parent, struct BinaryTree *leaf);
 void trim_leaf(char *value, struct BinaryTree *parent);
 
 /* properties */
