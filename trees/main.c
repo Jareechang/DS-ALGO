@@ -17,9 +17,9 @@ int main()
     int start = 0;
     struct BinaryTree *letters = create_tree(s, start, end);
     insert_node("Z", letters, letters);
-    struct BinaryTree *target = (struct BinaryTree *) malloc(sizeof(struct BinaryTree));
-    target = search_for("G", letters);
-    delete_node("G", target);
+    /*struct BinaryTree *target = (struct BinaryTree *) malloc(sizeof(struct BinaryTree));*/
+    /*target = search_for("A", letters);*/
+    printf("status: %d\n", delete_node("G", letters));
     print_tree(letters);
     free_tree(letters);
     return 0;
