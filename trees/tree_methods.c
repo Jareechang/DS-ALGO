@@ -5,6 +5,20 @@
 
 #define NOT_NULL(item) item != NULL
 
+/* get_parent:
+ *
+ *      returns the parent for the node with the given value on the tree 
+ *          
+ *          @arguments 
+ *
+ *          (char)                value: target value
+ *          (struct BinaryTree)    node: starting node
+ *          (struct BinaryTree)  parent: reference to parent
+ *
+ *          @return
+ *
+ *          (struct BinaryTree)  parent node of the target node (with the given value) 
+ * */
 struct BinaryTree *get_parent(char *value, struct BinaryTree *node, struct BinaryTree *parent)
 {
     if(node == NULL) return tree_alloc();
@@ -17,12 +31,24 @@ struct BinaryTree *get_parent(char *value, struct BinaryTree *node, struct Binar
 
 }
 
-
+/* get_target_node: 
+ *
+ *          given a value and a tree, it returns the node corresponding to 
+ *          the value in he tree.  
+ *          
+ *          (char)                  value: target value
+ *          (struct binaryTree)      node: starting point (at a given node)  
+ *
+ *          @return 
+ *
+ *          (struct BinaryTree)  target node (with the given value) 
+ **/
 struct BinaryTree *get_target_node(char *value, struct BinaryTree *node)
 {
     return equal(node->left, value) ? node->left : node->right;
 }
 
+/* get_single_leaf: given a node it returns it's leaf (assuming only one leaf) */
 struct BinaryTree *get_single_leaf(struct BinaryTree *node)
 {
     if(NOT_NULL(node->left)) {
@@ -36,7 +62,7 @@ struct BinaryTree *get_single_leaf(struct BinaryTree *node)
 }
 
 /* get_min_node: provided with the right sub-tree, recursively
- * looks up the minimum node*/
+ * looks up the minimum node (note: should be a right node) */
 struct BinaryTree *get_min_node(struct BinaryTree *node, struct BinaryTree *parent)
 {
     if(node == NULL) {
@@ -45,6 +71,8 @@ struct BinaryTree *get_min_node(struct BinaryTree *node, struct BinaryTree *pare
     get_min_node(node->left, node);
 }
 
+/* swap_link: swapping the link between the leaf and the deleted node on the given 
+ *             parent node  */
 void swap_link(struct BinaryTree *deleted_node, struct BinaryTree *parent, struct BinaryTree *leaf)
 {
     /* checking which side of the parent the deleted node is on */
@@ -119,10 +147,11 @@ int delete_node(char *value, struct BinaryTree *tree)
                 return 1;
                 break;
             case 2:
-                printf("case 2\n");
+                leaf = get_min_node(target->right, target);
+                swap_link(target, parent, leaf);
+                return 1;
                 break;
             default:
-                // do something
                 break;
         }
         return 0;
