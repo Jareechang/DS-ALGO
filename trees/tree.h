@@ -17,6 +17,9 @@ struct BinaryTree *tree_alloc(void);
 void free_tree(struct BinaryTree *root);
 /* Helper methods */
 char *str_dup(char **s, int mid);
+int check_case(struct BinaryTree *node);
+int greater_than(struct BinaryTree *node, char *value);
+int equal(struct BinaryTree *node, char *value);
 
 /* Traversal methods */
 void inorder_traversal(struct BinaryTree *root);
@@ -25,8 +28,8 @@ void postorder_traversal(struct BinaryTree *root);
 void bfs_traversal(struct BinaryTree *root);
 
 /* Tree specific methods */
-int insert(char *value, struct BinaryTree *node, struct BinaryTree *parent);
-int greater_than(struct BinaryTree *node, char *value);
+int insert_node(char *value, struct BinaryTree *node, struct BinaryTree *parent);
+int delete_node(char *value, struct BinaryTree *node);
 
 /* properties */
 char *min(struct BinaryTree *tree);

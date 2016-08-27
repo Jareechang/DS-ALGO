@@ -15,9 +15,11 @@ int main()
     int size = MAX;
     int end = (size - 1);  
     int start = 0;
-
     struct BinaryTree *letters = create_tree(s, start, end);
-    insert("Z", letters, letters);
+    /*insert_node("Z", letters, letters);*/
+    struct BinaryTree *target = (struct BinaryTree *) malloc(sizeof(struct BinaryTree));
+    target = search_for("D", letters);
+    printf("case: %d\n", check_case(target));
     print_tree(letters);
     free_tree(letters);
     return 0;
