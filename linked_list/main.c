@@ -4,7 +4,7 @@
 int main(void)
 {
     struct Node *numbers = create_list("A");
-    add_node("B", numbers);
     remove_node("B", numbers);
+    printf("first value: %s\n", numbers->next->value);
     return 0;
 }

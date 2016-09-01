@@ -3,6 +3,7 @@
 #include "linked_list.h"
 
 #define IS_NULL(x) x == NULL
+
 struct Node *create_list(char *s)
 {
     struct Node *temp = node_alloc();
@@ -16,14 +17,21 @@ struct Node *node_alloc(void)
     return (struct Node *) malloc(sizeof(struct Node));
 }
 
-void add_node(char *value, struct Node *node)
+void insert_node_beginning(char *value, struct Node **node)
+{
+    struct Node *new_node = create_list(value);
+    new_node->next = *node;
+    *node = new_node;
+}
+
+void insert_node_end(char *value, struct Node *node)
 {
     if(node->next == NULL) {
         struct Node *new_node = create_list(value);
         node->next = new_node;
         return;
     }
-    add_node(value, node->next);
+    insert_node_end(value, node->next);
 }
 
 int equal_value(struct Node *node, char *value)
