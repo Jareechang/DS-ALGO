@@ -1,28 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "linked_list.h"
 
 #define IS_NULL(x) x == NULL
-
-struct Node {
-    char *value;
-    struct Node *next;
-};
-
-struct Node *create_list(char *s);
-struct Node *node_alloc(void);
-void add_node(char *value, struct Node *list);
-void remove_node(char *value, struct Node *list);
-
-int equal_value(struct Node *list, char *value);
-
-int main(void)
-{
-    struct Node *numbers = create_list("A");
-    add_node("B", numbers);
-    remove_node("B", numbers);
-    return 0;
-}
-
 struct Node *create_list(char *s)
 {
     struct Node *temp = node_alloc();
