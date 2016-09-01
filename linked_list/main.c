@@ -4,7 +4,9 @@
 int main(void)
 {
     struct Node *numbers = create_list("A");
-    remove_node("B", numbers);
-    printf("first value: %s\n", numbers->next->value);
+    insert_node_end("B", numbers);
+    insert_node_end("C", numbers);
+    insert_node_end("D", numbers);
+    print_all(numbers);
     return 0;
 }

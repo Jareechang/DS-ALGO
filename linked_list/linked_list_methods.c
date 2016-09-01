@@ -34,11 +34,6 @@ void insert_node_end(char *value, struct Node *node)
     insert_node_end(value, node->next);
 }
 
-int equal_value(struct Node *node, char *value)
-{
-    return (strcmp(node->value, value) == 0);
-}
-
 void remove_node(char *value, struct Node *node)
 {
     if(equal_value(node, value)) {
@@ -46,4 +41,17 @@ void remove_node(char *value, struct Node *node)
     }
     remove_node(value, node->next);
     node->next = NULL;
+}
+
+void print_all(struct Node *list)
+{
+   if(list == NULL) return;
+   printf("%s\n", list->value);
+   print_all(list->next);
+}
+
+/* helpers */
+int equal_value(struct Node *node, char *value)
+{
+    return (strcmp(node->value, value) == 0);
 }
