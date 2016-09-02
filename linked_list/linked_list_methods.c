@@ -33,6 +33,16 @@ struct Node *get_node(char *value, struct Node *list)
     get_node(value, list->next);
 }
 
+/* get_nth: get nth node in the linked-list 
+ *  index range: 1 - n */
+struct Node *get_nth(int n, struct Node *list)
+{
+    if(n == 1) {
+        return list;
+    }
+    get_nth((--n), list->next);
+}
+
 /* inserts */
 
 void insert_node_after(char *location, char *value, struct Node **node)
