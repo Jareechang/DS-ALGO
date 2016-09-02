@@ -17,6 +17,24 @@ struct Node *node_alloc(void)
     return (struct Node *) malloc(sizeof(struct Node));
 }
 
+/* get node */
+
+struct Node *get_node(char *value, struct Node *list)
+{
+    if(list == NULL) {
+        printf("value not found");
+        return list; /* return the null value*/
+    }
+
+    if(equal_value(list, value)) {
+        return list;
+    }
+
+    get_node(value, list->next);
+}
+
+/* inserts */
+
 void insert_node_after(char *location, char *value, struct Node **node)
 {
 
@@ -52,6 +70,8 @@ void insert_node_end(char *value, struct Node *node)
     insert_node_end(value, node->next);
 }
 
+/* removal */
+
 void remove_node(char *value, struct Node *node)
 {
     if(equal_value(node, value)) {
@@ -61,6 +81,8 @@ void remove_node(char *value, struct Node *node)
     node->next = NULL;
 }
 
+/* properties */
+
 int length(struct Node *list)
 {
     int len;
@@ -69,15 +91,15 @@ int length(struct Node *list)
     return len;
 }
 
-void print_all(struct Node *list)
-{
-   if(list == NULL) return;
-   printf("%s\n", list->value);
-   print_all(list->next);
-}
-
 /* helpers */
 int equal_value(struct Node *node, char *value)
 {
     return (strcmp(node->value, value) == 0);
+}
+
+void print_all(struct Node *list)
+{
+    if(list == NULL) return;
+    printf("%s\n", list->value);
+    print_all(list->next);
 }

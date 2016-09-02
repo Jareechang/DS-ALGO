@@ -3,12 +3,11 @@
 
 int main(void)
 {
-    struct Node *numbers = create_list("A");
-    insert_node_end("B", numbers);
-    insert_node_end("C", numbers);
-    insert_node_end("D", numbers);
-    insert_node_after("B", "Z", &numbers);
-    print_all(numbers);
-    /*printf("length: %d\n", length(numbers));*/
+    struct Node *letters = create_list("A");
+    insert_node_end("B", letters);
+    insert_node_end("C", letters);
+    insert_node_end("D", letters);
+    insert_node_after("B", "Z", &letters);
+    printf("got value: %s\n", get_node("D", letters)->value);
     return 0;
 }
