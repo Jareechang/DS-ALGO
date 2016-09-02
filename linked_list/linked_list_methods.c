@@ -17,6 +17,24 @@ struct Node *node_alloc(void)
     return (struct Node *) malloc(sizeof(struct Node));
 }
 
+void insert_node_after(char *location, char *value, struct Node **node)
+{
+
+    if((*node) == NULL) {
+        printf("insert node location not found\n");
+        return;
+    }
+
+    if(equal_value((*node), location)) {
+        struct Node *new_node = create_list(value);
+        new_node->next = (*node)->next;
+        (*node)->next = new_node;
+        return;
+    }
+
+    insert_node_after(location, value, &((*node)->next));
+}
+
 void insert_node_beginning(char *value, struct Node **node)
 {
     struct Node *new_node = create_list(value);
@@ -41,6 +59,14 @@ void remove_node(char *value, struct Node *node)
     }
     remove_node(value, node->next);
     node->next = NULL;
+}
+
+int length(struct Node *list)
+{
+    int len;
+    if(list == NULL) return 0;
+    len = length(list->next) + 1;
+    return len;
 }
 
 void print_all(struct Node *list)
