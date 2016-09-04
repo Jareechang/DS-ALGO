@@ -14,12 +14,12 @@ struct DoublyLinkedNode *node_alloc(void)
 }
 
 /* add_node: create a node with specified value then build the link */
-void add_node(char *value, struct DoublyLinkedNode *node, struct DoublyLinkedList **list)
+void add_node(char *value, struct DoublyLinkedNode **node, struct DoublyLinkedList **list)
 {
     struct DoublyLinkedNode *new_node = node_create(value);
-    node->next = new_node;
-    new_node->prev = node;
-    update_link(node, new_node, &(*list));
+    (*node)->next = new_node;
+    new_node->prev = (*node);
+    update_link((*node), new_node, &(*list));
 }
 
 void update_link(struct DoublyLinkedNode *head, struct DoublyLinkedNode *tail, struct DoublyLinkedList **list)
@@ -36,4 +36,19 @@ struct DoublyLinkedNode *node_create(char *value)
     new_node->prev = NULL; 
     new_node->next = NULL; 
     return new_node;
+}
+
+/* print: */
+void print(struct DoublyLinkedNode *start_node) 
+{
+    if(start_node == NULL) return;
+    printf("%s\n", start_node->value);
+    print(start_node->next);
+}
+
+void print_reverse(struct DoublyLinkedNode *start_node)
+{
+    if(start_node == NULL) return;
+    printf("%s\n", start_node->value);
+    print_reverse(start_node->prev);
 }

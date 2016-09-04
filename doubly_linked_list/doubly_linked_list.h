@@ -17,7 +17,10 @@ struct DoublyLinkedList {
 struct DoublyLinkedNode *node_alloc(void);
 struct DoublyLinkedList *list_alloc(void);
 struct DoublyLinkedNode *node_create(char *value);
-void add_node(char *value, struct DoublyLinkedNode *node, struct DoublyLinkedList **list);
+void add_node(char *value, struct DoublyLinkedNode **node, struct DoublyLinkedList **list);
 struct DoublyLinkedList *list_create(void);
 void update_link(struct DoublyLinkedNode *head, struct DoublyLinkedNode *tail, struct DoublyLinkedList **list);
+
+void print(struct DoublyLinkedNode *start_node);
+void print_reverse(struct DoublyLinkedNode *start_node);
 #endif

@@ -6,6 +6,7 @@ int main(void)
 {
     struct DoublyLinkedList *list = list_alloc();
     struct DoublyLinkedNode *letters = node_create("A");
-    add_node("B", letters, &list);
+    add_node("B", &letters, &list);
+    print_reverse(list->tail);
     return 0;
 }
